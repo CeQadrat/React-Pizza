@@ -1,0 +1,21 @@
+.button {
+  padding: 12px 18px;
+  font-family: 'Proxima Nova Rg';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 16px;
+  text-transform: none;
+  color: #EB5A1E;
+
+  background: #FFFFFF;
+  border: 1px solid #EB5A1E;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+.button:hover {
+  color: #FFFFFF;
+  background: #FE5F1E;
+  border: 1px solid #FE5F1E;
+}

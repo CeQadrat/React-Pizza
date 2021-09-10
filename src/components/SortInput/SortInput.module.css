@@ -1,0 +1,33 @@
+.sort {
+  display: flex;
+  align-items: center;
+
+  font-family: 'Proxima Nova Rg';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.015em;
+
+  color: #2C2C2C;
+}
+
+.arrow {
+  margin-right: 6px;
+}
+
+.label {
+  margin-right: 8px;
+}
+
+.sort_item {
+  border-bottom: 1px dashed #FE5F1E;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.015em;
+
+  color: #FE5F1E;
+  cursor: pointer;
+}

@@ -1,0 +1,28 @@
+.tab {
+  z-index: 1;
+  background: #F9F9F9;
+  border-radius: 30px;
+  min-width: auto;
+  min-height: 46px;
+  padding: 6px 26px;
+  font-family: 'Proxima Nova Rg';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0.015em;
+  text-transform: none;
+}
+
+.tab__indicator {
+  z-index: 0;
+  height: 100%;
+  top: 0;
+  background: #282828;
+  border-radius: 30px;
+}
+
+.tab__selected {
+  background: transparent;
+  color: #FFFFFF;
+}

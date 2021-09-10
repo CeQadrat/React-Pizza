@@ -15,7 +15,7 @@ const Title: FunctionComponent<Props> = ({ title, subtitle }) => {
     <header className={styles.header}>
       <Link className={styles.logo} to={Routes.main.path}>
         <img src={logo} alt="React pizza" />
-        <div className={styles.titleContainer}>
+        <div className={styles.title_container}>
           <h1 className={styles.title}>{title}</h1>
           <p className={styles.subtitle}>{subtitle}</p>
         </div>
