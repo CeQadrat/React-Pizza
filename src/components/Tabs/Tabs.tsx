@@ -8,7 +8,7 @@ import styles from './Tabs.module.css';
 
 type Props = {
   tabs: Array<{ label: string; value: string }>;
-  selectedTab: string;
+  selectedTab?: string;
   onChange: (value: string) => void;
   classes?: {
     root?: string;

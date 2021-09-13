@@ -6,7 +6,11 @@ import { ReactComponent as ArrowIcon } from 'static/icons/arrow.svg';
 
 import styles from './SortInput.module.css';
 
-type SortItem = { label: string; value: string };
+export type SortItem = {
+  label: string;
+  value: string;
+  orderDir?: 'asc' | 'desc';
+};
 
 type Props = {
   selectedItem: SortItem;
