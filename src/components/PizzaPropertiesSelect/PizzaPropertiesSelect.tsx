@@ -1,14 +1,16 @@
 import React, { FunctionComponent } from 'react';
 
 import Tabs from 'components/Tabs';
+import { IPizzaSize } from 'resources/PizzaSize';
+import { IPizzaDough } from 'resources/PizzaDough';
 
 import styles from './PizzaPropertiesSelect.module.css';
 
 type Props = {
-  sizes: Array<{ label: string; value: string }>;
+  sizes: IPizzaSize[];
   selectedSize: string;
   onSizeChange: (value: string) => void;
-  doughs: Array<{ label: string; value: string }>;
+  doughs: IPizzaDough[];
   selectedDough: string;
   onDoughChange: (value: string) => void;
 };

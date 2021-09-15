@@ -1,30 +1,22 @@
-import Button from 'components/Button';
 import React, { FunctionComponent } from 'react';
+import { useHistory } from 'react-router';
+import { observer } from 'mobx-react';
 
+import Button from 'components/Button';
 import CartItem from 'components/CartItem';
 import { ReactComponent as CartIcon } from 'static/icons/cart.svg';
 import { ReactComponent as TrashIcon } from 'static/icons/trash.svg';
 import { ReactComponent as BackArrowIcon } from 'static/icons/backArrow.svg';
 import { ReactComponent as ShoppingCartImage } from 'static/images/shoppingCart.svg';
+import { useStore } from 'contexts/StoreContext';
 
 import styles from './Cart.page.module.css';
 
-const Cart: FunctionComponent = () => {
-  const items = [
-    {
-      name: 'Test',
-      count: 2,
-      dough: 'testo',
-      photo:
-        'https://firebasestorage.googleapis.com/v0/b/react-pizza-c5cf2.appspot.com/o/image%207.png?alt=media&token=00108157-99a6-4199-8542-fde29941e9e5',
-      price: 770,
-      size: 'size',
-    },
-  ];
-  const totalCount = 3;
-  const totalPrice = 900;
+const Cart: FunctionComponent = observer(() => {
+  const { cartStore } = useStore();
+  const history = useHistory();
 
-  if (items.length === 0) {
+  if (cartStore.items.length === 0) {
     return (
       <div className={styles.cartEmptyPage}>
         <div className={styles.cartTitleName}>Корзина пустая 😕</div>
@@ -33,7 +25,11 @@ const Cart: FunctionComponent = () => {
           пиццу, перейди на главную страницу.
         </div>
         <ShoppingCartImage className={styles.shoppingCartImage} />
-        <Button variant="contained" color="default">
+        <Button
+          variant="contained"
+          color="default"
+          onClick={() => history.goBack()}
+        >
           Вернуться назад
         </Button>
       </div>
@@ -47,33 +43,41 @@ const Cart: FunctionComponent = () => {
           <CartIcon />
           Корзина
         </div>
-        <Button variant="text" startIcon={<TrashIcon />}>
+        <Button
+          variant="text"
+          startIcon={<TrashIcon />}
+          onClick={() => cartStore.clearCart()}
+        >
           Очистить корзину
         </Button>
       </div>
       <div className={styles.items}>
-        {items.map((item) => (
+        {cartStore.items.map((item) => (
           <CartItem key={item.name} item={item} />
         ))}
       </div>
       <div className={styles.totalInfo}>
         <div>
           {`Всего пицц: `}
-          <b>{`${totalCount} шт.`}</b>
+          <b>{`${cartStore.totalCount} шт.`}</b>
         </div>
         <div className={styles.totalPrice}>
           {`Сумма заказа: `}
-          <b>{`${totalPrice} ₽`}</b>
+          <b>{`${cartStore.totalPrice} ₽`}</b>
         </div>
       </div>
       <div className={styles.actions}>
-        <Button color="default" startIcon={<BackArrowIcon />}>
+        <Button
+          color="default"
+          startIcon={<BackArrowIcon />}
+          onClick={() => history.goBack()}
+        >
           Вернуться назад
         </Button>
         <Button variant="contained">Оплатить сейчас</Button>
       </div>
     </div>
   );
-};
+});
 
 export default Cart;

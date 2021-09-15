@@ -38,3 +38,18 @@
 
   color: #000000;
 }
+
+.itemsInCart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  margin-left: 6px;
+
+  font-size: 13px;
+  line-height: 16px;
+  color: #FFFFFF;
+  background: #EB5A1E;
+  border-radius: 50%;
+}

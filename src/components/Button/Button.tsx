@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 
 import MuiButton from '@material-ui/core/Button';
 
@@ -9,6 +9,7 @@ type Props = {
   endIcon?: ReactNode;
   variant?: 'text' | 'outlined' | 'contained';
   color?: 'primary' | 'secondary' | 'default';
+  onClick?: MouseEventHandler;
 };
 
 const Button: FunctionComponent<Props> = (props) => {
@@ -16,6 +17,7 @@ const Button: FunctionComponent<Props> = (props) => {
     startIcon,
     endIcon,
     children,
+    onClick,
     variant = 'outlined',
     color = 'primary',
   } = props;
@@ -35,6 +37,7 @@ const Button: FunctionComponent<Props> = (props) => {
       disableElevation
       startIcon={startIcon}
       endIcon={endIcon}
+      onClick={onClick}
     >
       {children}
     </MuiButton>

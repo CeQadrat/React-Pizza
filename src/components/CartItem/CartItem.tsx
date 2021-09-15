@@ -1,31 +1,32 @@
 import React, { FunctionComponent } from 'react';
+import { observer } from 'mobx-react';
 
 import IconButton from 'components/IconButton';
 import { ReactComponent as MinusIcon } from 'static/icons/minus.svg';
 import { ReactComponent as PlusIcon } from 'static/icons/plus.svg';
 import { ReactComponent as ClearIcon } from 'static/icons/clear.svg';
+import { ICartItem } from 'stores/CartStore/ICartItem';
 
 import styles from './CartItem.module.css';
 
 type Props = {
-  item: {
-    name: string;
-    photo: string;
-    count: number;
-    price: number;
-    size: string;
-    dough: string;
-  };
+  item: ICartItem;
 };
 
 const CartItem: FunctionComponent<Props> = (props) => {
   const { item } = props;
 
-  const onDecrement = () => {};
+  const onDecrement = () => {
+    item.decrimentCount();
+  };
 
-  const onIncrement = () => {};
+  const onIncrement = () => {
+    item.incrementCount();
+  };
 
-  const onRemove = () => {};
+  const onRemove = () => {
+    item.remove();
+  };
 
   return (
     <div className={styles.cartItem}>
@@ -33,7 +34,9 @@ const CartItem: FunctionComponent<Props> = (props) => {
         <img className={styles.pizzaPhoto} src={item.photo} alt={item.name} />
         <div>
           <h3 className={styles.pizzaName}>{item.name}</h3>
-          <p className={styles.pizzaParams}>{`${item.dough}, ${item.size}`}</p>
+          <p
+            className={styles.pizzaParams}
+          >{`${item.dough.label}, ${item.size.label}`}</p>
         </div>
       </div>
       <div className={styles.countActions}>
@@ -53,4 +56,4 @@ const CartItem: FunctionComponent<Props> = (props) => {
   );
 };
 
-export default CartItem;
+export default observer(CartItem);

@@ -4,15 +4,17 @@ import React, {
   useState,
   useCallback,
 } from 'react';
+import { observer } from 'mobx-react';
 
 import Tabs from 'components/Tabs';
 import SortInput, { SortItem } from 'components/SortInput';
-
 import PizzaItem from 'components/PizzaItem';
 import { IPizzaItem, pizzaItemService } from 'resources/PizzaItem';
 import { IPizzaCategory, pizzaCategoryService } from 'resources/PizzaCategory';
 import { IPizzaDough, pizzaDoughService } from 'resources/PizzaDough';
 import { IPizzaSize, pizzaSizeService } from 'resources/PizzaSize';
+import { useStore } from 'contexts/StoreContext';
+
 import styles from './Main.page.module.css';
 
 const sortItems: SortItem[] = [
@@ -33,7 +35,9 @@ const sortItems: SortItem[] = [
   },
 ];
 
-const Main: FunctionComponent = () => {
+const Main: FunctionComponent = observer(() => {
+  const { cartStore } = useStore();
+
   const [category, setCategory] = useState<string>();
   const [sortItem, setSortItem] = useState(sortItems[0]);
   const [isLoading, setIsLoading] = useState(true);
@@ -73,7 +77,7 @@ const Main: FunctionComponent = () => {
       loadDoughsList(),
       loadSizesList(),
     ]);
-  }, []);  // eslint-disable-line
+  }, []);
 
   useEffect(() => {
     const updatePizzaList = async () => {
@@ -101,6 +105,25 @@ const Main: FunctionComponent = () => {
     }
   }, [loadInitialData]);
 
+  const handleAddPizzaToCart = useCallback(
+    (pizzaItem: IPizzaItem, sizeValue: string, doughValue: string) => {
+      const size = sizesList.find((s) => s.value === sizeValue);
+      const dough = doughsList.find((s) => s.value === doughValue);
+
+      if (size && dough) {
+        cartStore.addItem(pizzaItem, size, dough);
+      }
+    },
+    [cartStore, doughsList, sizesList]
+  );
+
+  const getItemsInCart = useCallback(
+    (pizzaName: string, size: string, dough: string): number => {
+      return cartStore.getItemsInCart(pizzaName, size, dough);
+    },
+    [cartStore]
+  );
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -127,11 +150,13 @@ const Main: FunctionComponent = () => {
             doughs={doughsList}
             sizes={sizesList}
             item={pizza}
+            onAdd={handleAddPizzaToCart}
+            getItemsInCart={getItemsInCart}
           />
         ))}
       </div>
     </div>
   );
-};
+});
 
 export default Main;
