@@ -6,16 +6,55 @@
   font-size: 16px;
   line-height: 16px;
   text-transform: none;
-  color: #EB5A1E;
+  color: #CACACA;
 
-  background: #FFFFFF;
-  border: 1px solid #EB5A1E;
   box-sizing: border-box;
   border-radius: 30px;
 }
 
-.button:hover {
+.buttonOutlined {
+  background: #FFFFFF;
+  border: 1px solid #D3D3D3;
+}
+
+.buttonOutlined:hover {
+  color: #FFFFFF;
+  background: #D3D3D3;
+  border: 1px solid #D3D3D3;
+}
+
+.buttonText {
+  padding: 8px 16px;
+  font-weight: normal;
+  color: #B6B6B6;
+  border-radius: 0;
+}
+
+.buttonContained {
+  color: #FFFFFF;
+  background: #282828;
+  border: 1px solid #282828;
+}
+
+.buttonOutlinedPrimary {
+  color: #EB5A1E;
+  background: #FFFFFF;
+  border: 1px solid #EB5A1E;
+}
+
+.buttonOutlinedPrimary:hover {
   color: #FFFFFF;
   background: #FE5F1E;
   border: 1px solid #FE5F1E;
+}
+
+.buttonContainedPrimary {
+  color: #FFFFFF;
+  background: #FE5F1E;
+  border: 1px solid #FE5F1E;
+}
+
+.buttonContainedPrimary:hover {
+  background: #E14201;
+  border: 1px solid #E14201;
 }

@@ -7,16 +7,32 @@ import styles from './Button.module.css';
 type Props = {
   startIcon?: ReactNode;
   endIcon?: ReactNode;
+  variant?: 'text' | 'outlined' | 'contained';
+  color?: 'primary' | 'secondary' | 'default';
 };
 
 const Button: FunctionComponent<Props> = (props) => {
-  const { startIcon, endIcon, children } = props;
+  const {
+    startIcon,
+    endIcon,
+    children,
+    variant = 'outlined',
+    color = 'primary',
+  } = props;
 
   return (
     <MuiButton
-      variant="contained"
+      classes={{
+        root: styles.button,
+        outlined: styles.buttonOutlined,
+        outlinedPrimary: styles.buttonOutlinedPrimary,
+        containedPrimary: styles.buttonContainedPrimary,
+        text: styles.buttonText,
+        contained: styles.buttonContained,
+      }}
+      variant={variant}
+      color={color}
       disableElevation
-      className={styles.button}
       startIcon={startIcon}
       endIcon={endIcon}
     >

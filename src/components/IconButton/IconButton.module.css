@@ -1,0 +1,25 @@
+.iconButton {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: #FFFFFF;
+  border: 2px solid #D7D7D7;
+  box-sizing: border-box;
+  color: #D0D0D0;
+}
+
+.iconButton:hover {
+  color: #FFFFFF;
+  background: #D7D7D7;
+  border: 2px solid #D7D7D7;
+}
+
+.iconButtonPrimary {
+  border: 2px solid #FE5F1E;
+  color: #FE5F1E;
+}
+
+.iconButtonPrimary:hover {
+  background: #FE5F1E;
+  border: 2px solid #FE5F1E;
+}
