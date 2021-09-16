@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react';
 import Tabs from 'components/Tabs';
 import { IPizzaSize } from 'resources/PizzaSize';
 import { IPizzaDough } from 'resources/PizzaDough';
+import { IPizzaItem } from 'resources/PizzaItem';
 
 import styles from './PizzaPropertiesSelect.module.css';
 
@@ -13,6 +14,7 @@ type Props = {
   doughs: IPizzaDough[];
   selectedDough: string;
   onDoughChange: (value: string) => void;
+  item: IPizzaItem;
 };
 
 const PizzaPropertiesSelect: FunctionComponent<Props> = (props) => {
@@ -23,7 +25,20 @@ const PizzaPropertiesSelect: FunctionComponent<Props> = (props) => {
     doughs,
     selectedDough,
     onDoughChange,
+    item,
   } = props;
+
+  const doughsTabs = doughs.map((dough) => ({
+    label: dough.label,
+    value: dough.value,
+    disabled: !item.price[dough.value],
+  }));
+
+  const sizesTabs = sizes.map((size) => ({
+    label: size.label,
+    value: size.value,
+    disabled: !item.price?.[selectedDough]?.[size.value],
+  }));
 
   return (
     <div className={styles.container}>
@@ -31,10 +46,10 @@ const PizzaPropertiesSelect: FunctionComponent<Props> = (props) => {
         classes={{
           root: styles.tabs,
           tab: styles.tab,
-          indicator: styles.tab__indicator,
-          selected: styles.tab__selected,
+          indicator: styles.tabIndicator,
+          selected: styles.tabSelected,
         }}
-        tabs={doughs}
+        tabs={doughsTabs}
         selectedTab={selectedDough}
         onChange={onDoughChange}
       />
@@ -42,10 +57,10 @@ const PizzaPropertiesSelect: FunctionComponent<Props> = (props) => {
         classes={{
           root: styles.tabs,
           tab: styles.tab,
-          indicator: styles.tab__indicator,
-          selected: styles.tab__selected,
+          indicator: styles.tabIndicator,
+          selected: styles.tabSelected,
         }}
-        tabs={sizes}
+        tabs={sizesTabs}
         selectedTab={selectedSize}
         onChange={onSizeChange}
       />

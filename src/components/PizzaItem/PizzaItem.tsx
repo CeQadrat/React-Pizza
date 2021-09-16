@@ -21,7 +21,7 @@ type Props = {
 
 const PizzaItem: FunctionComponent<Props> = (props) => {
   const { item, sizes, doughs, onAdd, getItemsInCart } = props;
-  const defaultDough = Object.keys(item.price)[0];
+  const defaultDough = Object.keys(item.price).sort()[0];
   const defaultSize = Object.keys(item.price?.[defaultDough])[0];
   const [selectedSize, setSelectedSize] = useState(defaultSize);
   const [selectedDough, setSelectedDough] = useState(defaultDough);
@@ -32,14 +32,23 @@ const PizzaItem: FunctionComponent<Props> = (props) => {
     onAdd(item, selectedSize, selectedDough);
   }, [item, onAdd, selectedDough, selectedSize]);
 
+  const handleDoughChange = (dough: string) => {
+    setSelectedDough(dough);
+    if (!item.price?.[dough]?.[selectedSize]) {
+      const availableSizes = Object.keys(item.price?.[dough]);
+      setSelectedSize(availableSizes[0]);
+    }
+  };
+
   return (
     <div className={styles.item}>
       <img className={styles.photo} src={item.photo} alt={item.name} />
       <h3 className={styles.name}>{item.name}</h3>
       <PizzaPropertiesSelect
+        item={item}
         doughs={doughs}
         selectedDough={selectedDough}
-        onDoughChange={setSelectedDough}
+        onDoughChange={handleDoughChange}
         sizes={sizes}
         selectedSize={selectedSize}
         onSizeChange={setSelectedSize}

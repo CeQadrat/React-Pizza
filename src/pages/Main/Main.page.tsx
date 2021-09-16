@@ -129,7 +129,7 @@ const Main: FunctionComponent = observer(() => {
   }
 
   return (
-    <div>
+    <div className={styles.mainPage}>
       <div className={styles.topbar}>
         <Tabs
           tabs={categoriesList}

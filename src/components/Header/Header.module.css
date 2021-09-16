@@ -2,6 +2,8 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  max-width: 1332px;
+  margin: 0 auto;
   padding: 48px 48px 40px 68px;
   box-sizing: border-box;
   border-bottom: 1px solid #F7F7F7;
@@ -20,7 +22,7 @@
   margin-right: 17px;
 }
 
-.title_container {
+.titleContainer {
   display: flex;
   flex-direction: column;
 }
@@ -42,4 +44,17 @@
   line-height: 19px;
 
   color: #7B7B7B;
+}
+
+.cartDelimiter {
+  height: 25px;
+  margin: 0 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+
+}
+
+.cartIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
 }

@@ -7,7 +7,7 @@ import MuiTab from '@material-ui/core/Tab';
 import styles from './Tabs.module.css';
 
 type Props = {
-  tabs: Array<{ label: string; value: string }>;
+  tabs: Array<{ label: string; value: string; disabled?: boolean }>;
   selectedTab?: string;
   onChange: (value: string) => void;
   classes?: {
@@ -32,7 +32,7 @@ const Tabs: FunctionComponent<Props> = (props) => {
     <MuiTabs
       classes={{
         root: cn(classes?.root),
-        indicator: cn(styles.tab__indicator, classes?.indicator),
+        indicator: cn(styles.tabIndicator, classes?.indicator),
       }}
       value={selectedTab}
       onChange={handleTabChange}
@@ -41,11 +41,13 @@ const Tabs: FunctionComponent<Props> = (props) => {
         <MuiTab
           classes={{
             root: cn(styles.tab, classes?.tab),
-            selected: cn(styles.tab__selected, classes?.selected),
+            selected: cn(styles.tabSelected, classes?.selected),
+            disabled: styles.tabDisabled,
           }}
           key={tab.value}
           label={tab.label}
           value={tab.value}
+          disabled={tab.disabled || false}
         />
       ))}
     </MuiTabs>

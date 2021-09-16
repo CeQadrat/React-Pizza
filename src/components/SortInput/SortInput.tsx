@@ -26,7 +26,7 @@ const SortInput: FunctionComponent<Props> = (props) => {
       <ArrowIcon className={styles.arrow} />
       <span className={styles.label}>{'Сортировка по: '}</span>
       <DropdownMenu items={items} onItemSelect={onItemSelect}>
-        <span className={styles.sort_item}>{selectedItem.label}</span>
+        <span className={styles.sortItem}>{selectedItem.label}</span>
       </DropdownMenu>
     </div>
   );

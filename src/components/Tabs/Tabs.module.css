@@ -14,7 +14,7 @@
   text-transform: none;
 }
 
-.tab__indicator {
+.tabIndicator {
   z-index: 0;
   height: 100%;
   top: 0;
@@ -22,7 +22,11 @@
   border-radius: 30px;
 }
 
-.tab__selected {
+.tabSelected {
   background: transparent;
   color: #FFFFFF;
+}
+
+.tab.tabDisabled {
+  opacity: 0.2;
 }
